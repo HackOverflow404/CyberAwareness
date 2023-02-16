@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>CyberSpace</title>
+    <script src="NavBar.js" type="text/jsx"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="navbar-div"></div>
+
+    <div class="title">
+      <img id="title-img" src="PasswordsTitleBackground.png" alt="Passwords">
+      <span class="title-text"><h1 id="title">How can Passwords be Protected?</h1></span>
+    </div>
+
+    <div class="content">
+        <table class="left-content-container content-container">
+            <tr class="left-content-1 left-tile content-tile">
+                <td>
+                    <h2 class="content-title">Common ways to protect your password</h2>
+                    <p class="content-para">There are many ways to protect your passwords. Some of them are as follows:</p>
+                    <ul>
+                      <li>Create strong and secure passwords</li>
+                      <li>Use a different password for each account</li>
+                      <li>Use a safe and secure password manager to manage all your passwords (e.g. LastPass, 1Password, NordPass)</li>
+                      <li>Use multi factor authentication</li>
+                      <li>Never share your password</li>
+                      <li>Be mindful of the ways that a hacker can grab your password</li>
+                    </ul>
+                    <p class="content-para">The benefit of creating a strong and secure password is that it is harder to guess. It is even better when it contains randomized elements.<br><br>Using the same password for multiple accounts is a rescipe for disaster, because if a hacker gets one of your passwords, the first thing they wil try is to log into your other accounts with the same password. Hence, you should always use a different password for each account.<br><br>A password manager can help store all your passwords and this can make it much easier to make long and complex passwords, because now you only have to memorize one password, the password to your password manager. Some of the best password managers are as follows:</p>
+                    <ul>
+                      <li>Last Pass</li>
+                      <li>1Password</li>
+                      <li>NordPass</li>
+                      <li>Bitwarden</li>
+                      <li>RememBear</li>
+                      <li>Keeper</li>
+                      <li>LogMeOnce</li>
+                    </ul>
+                    <p class="content-para">Multifactor authentication makes it so that even if a hacker obtains your password, they are now less likely to be able to get into your account because there is now another obstacle for them to cross.<br><br>Sharing your password is a terrible idea because the more people that know a secret, the more likely it is to leak.<br><br>Taking precautions to prevent hackers from obtaining your password can greatly reduce the chances of them hacking into your account.</p>
+                </td>
+            </tr>
+        </table>
+        <table class="right-content-container content-container">
+            <tr class="right-content-1 right-tile content-tile">
+                <td>
+                    <h2 class="content-title">Making safe passwords</h2>
+                    <p class="content-para">There are many methods of making safe and secure passwords, but the key is remembering them.<br><br>The ideal password should be as long as possible and as random as possible, but how likely are you to remember something like this: Anx7S@dRsj4u-MQe. So to combat this issue, there are many techniques that allow you to create safe, secure, and randomized passworda while still making them memorable.<br><br>Correct Horse Battery Staple Method:<br><img src="CorrectBatteryHorseStapleMethod.png" style="max-width: 32vw;" alt="Correct Battery Horse Staple Method" srcset=""><br>The Correct Horse Battery Staple method is basically choosing 4 completely random words from a dictionary and then combining them to form a password. This method allows for varying length and randomized words, and the main appeal of this method is how easy it is to remember. You can simply conjure an image that the 4 words can be used to describe making it much easier to remember the password.<br><br>Revised Passphrase Method:<br>This method is quite similar to the last one, but here instead of choosing random words from the dictionary, you have to come up with uncommin and bizare words, such as Quagmire, and by coming up with multiple of this and stringing them together, you can create a difficult to guess password, such as QuagmireHancockMerciDeNada.<br><br>Sentence Method (Bruce Schneier Method):<br>In this method, you have to make up a sentence and transform it into a password using a rule, for example:</p>
+                    <ul>
+                      <li>Sentence: The Old Duke is my favorite pub in South London.</li>
+                      <li>Rule: The first two letters of every word.</li>
+                      <li>Password: ThOlDuismyfapuinSoLo</li>
+                    </ul>
+                    <p class="content-para">And it is going to be quite difficult for a hacker to guess this password. Try using sentences that are personal to you, so that they are easier to remember.</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script type="text/babel">
+        ReactDOM.render(<NavBar />, document.getElementById("navbar-div"));
+    </script>
+
+    <script>
+        $(function () {
+            let titleHeight = ($("#title-img").innerHeight() / 2)-($(".title-text").innerHeight() / 2);
+            $(".title-text").css("top", (titleHeight + "px"));
+
+            let contentHeight = ($("#title-img").outerHeight() + "px");
+            $(".content").css("top", contentHeight);
+
+            let contentTileMargin = ($("html").innerWidth() - ($(".content-tile").outerWidth() * 2))/ 3;
+            $(".content-tile").css("margin-top", (contentTileMargin + "px"));
+            $(".left-content-container").css("padding-left", (contentTileMargin + "px"));
+            $(".right-content-container").css("padding-right", (contentTileMargin + "px"));
+            $(".content-container").css("padding-bottom", (contentTileMargin + "px"));
+
+            $(window).resize(function() { // Ensure elements are repositioned correctly based on resize.
+                let titleHeight = ($("#title-img").innerHeight() / 2)-($(".title-text").innerHeight() / 2);
+                $(".title-text").css("top", (titleHeight + "px"));
+
+                let contentHeight = ($("#title-img").outerHeight() + "px");
+                $(".content").css("top", contentHeight);
+
+                let contentTileMargin = ($("html").innerWidth() - ($(".content-tile").outerWidth() * 2))/ 3;
+                $(".content-tile").css("margin-top", (contentTileMargin + "px"));
+                $(".left-content-container").css("padding-left", (contentTileMargin + "px"));
+                $(".right-content-container").css("padding-right", (contentTileMargin + "px"));
+                $(".content-container").css("padding-bottom", (contentTileMargin + "px"));
+            });
+        });
+    </script>
+</body>
+</html>

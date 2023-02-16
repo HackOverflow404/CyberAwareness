@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>CyberSpace</title>
+    <script src="NavBar.js" type="text/jsx"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="navbar-div"></div>
+
+    <div class="title">
+      <img id="title-img" style="filter:brightness(100%)" src="404TitleBackground.png" alt="404">
+
+    </div>
+    
+    <script type="text/babel">
+        ReactDOM.render(<NavBar />, document.getElementById("navbar-div"));
+    </script>
+
+    <script>
+        $(function () {
+            let titleHeight = ($("#title-img").innerHeight() / 2)-($(".title-text").innerHeight() / 2);
+            $(".title-text").css("top", (titleHeight + "px"));
+
+            $(window).resize(function() { // Ensure elements are repositioned correctly based on resize.
+                let titleHeight = ($("#title-img").innerHeight() / 2)-($(".title-text").innerHeight() / 2);
+                $(".title-text").css("top", (titleHeight + "px"));
+            });
+        });
+    </script>
+</body>
+</html>

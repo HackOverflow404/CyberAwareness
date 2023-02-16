@@ -1,0 +1,78 @@
+/* The navbar container */
+.navbar {
+    overflow: hidden;
+    font-family: Arial;
+}
+
+/* The dropdown div container */
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+/* The home button */
+#home-link {
+    text-decoration: none;
+}
+
+/* The dropdown button */
+.dropdown .dropbtn {
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+
+    padding: 18px 18px;
+    background-color: inherit;
+    margin: 0;
+    border-radius: 10px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    display: flex;
+    justify-content: center;
+    width: 180px;
+}
+
+/* Add a background color to navbar links on hover */
+.dropdown:hover .dropbtn {
+    background: #CFCFCF;
+    color: #414141;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    border-radius: 10px;
+    position: absolute;
+    background: #CFCFCF;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a:hover {
+    background: #414141;
+    color: #FFFFFF;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    float: none;
+    color: #414141;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    border-radius: 10px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}

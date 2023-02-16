@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/sha256.min.js" integrity="sha512-fv28nWHTcWfoN3KBd2fs+YWsirQ+L0b/iIRS7HcNDPSAwxy6oSjRrYjQ+OtJoJz0wUKsVcPYgwcZzK04KfHD0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/pbkdf2.min.js" integrity="sha512-E1FCVqEhkBCsxW0xRseAo/Mf/u+7cqKxQQ5R4RNHMHH3CxYpQmeSnXL9Tcf6amYSgy/dR3/utZt2TFY05OGabQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/sha512.min.js" integrity="sha512-iVz09aQOY2fbdnKQh7kJ0Q9h2ZVjMsql2IT6mI+qziZdJ7bT/guIovUCCE5bx1qzc4mnnUKyGkArkkGJ1zap0g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/md5.min.js" integrity="sha512-3sGbaDyhjGb+yxqvJKi/gl5zL4J7P5Yh4GXzq+E9puzlmVkIctjf4yP6LfijOUvtoBI3p9pLKia9crHsgYDTUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>CyberSpace - How do Passwords Work</title>
+    <script src="NavBar.js" type="text/jsx"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="navbar-div"></div>
+
+    <div class="title">
+      <img id="title-img" src="PasswordsTitleBackground.png" alt="Passwords">
+      <span class="title-text"><h1 id="title">How do Passwords Work?</h1></span>
+    </div>
+
+    <div class="content">
+        <table class="left-content-container content-container">
+            <tr class="left-content-1 left-tile content-tile">
+                <td>
+                    <h2 class="content-title">Try it out!</h2>
+                    <div class="hash-demo-box"><p class="content-para">Enter a password:</p><span id="hash-message" class="message-box">Although this data is not saved, do not enter an actual password.</span></div>
+                    <input id="text-input" class="hash-demo" type="text"><br><br>
+                    <div style="display: table;"><p style="display: table-cell;" class="content-para">Hashed output in &nbsp</p><select id="crypto-alg" style="display: table-cell;"><option value="SHA-256">SHA-256</option><option value="SHA-512">SHA-512</option><option value="MD5">MD5</option></select><p style="display: table-cell;" class="content-para">:</p></div>
+                    <input class="hash-demo" id="text-output" type="text" disabled></p>
+                </td>
+            </tr>
+            <tr class="left-content-2 left-tile content-tile">
+                <td>
+                    <h2 class="content-title">What are passwords?</h2>
+                    <p class="content-para">The formal definition: passwords are a string of characters that a user enters to prove to a system that they are who they say they are.<br><br>The informal definition: passwords are letters, numbers, or/and symbols that you enter to tell a device that it is you who is logging in.<br><br>Passwords are the most common method of authenticating yourself when logging into something.</p>
+                </td>
+            </tr>
+            <tr class="left-content-3 left-tile content-tile">
+                <td>
+                    <h2 class="content-title">How are passwords stored?</h2>
+                    <p class="content-para">Before the development of hashing and encryption of passwords, they were stored as regular characters in a database. The user would create an account and along with it a password, and that very password would be stored in a database.</p><div id="diagram-1" class="diagram"><div id="create-passwd-box"><p class="diagram-text">Create Password<br>E.g. Password123</p></div><div id="arrow-1"><div id="arrowbody-1"></div><div class="arrowhead"></div><div id="db-passwd-box"><p class="diagram-text">Database</p></div></div></div><p class="content-para">Passwords that are not yet hashed or encrypted are called cleartext or plaintext, and before the rise of password hashing, passwords used to be stored in this format. This is obviously harmful because if the database gets leaked, user passwords will also be leaked.<br><br>One of the most prominent examples of this is the RockYou hack that occurred in December of 2009. RockYou experienced a massive data breach that leaked 32 million user accounts along with all their data. The RockYou servers stored their users’ passwords in the cleartext format and hackers exposed these passwords to the public.<br><br>Many people often also use the same password for multiple accounts, and if a hacker gets a password for one of your accounts, they can try that password for many of your other accounts and quite possibly gain access to a few of them.<br><br>To prevent hackers from obtaining a user’s actual password in the event of a data breach, passwords are now stored in a hash format using one of several available hashing algorithms (SHA-256, NTHash, MD5 [MD5 is a cracked hashing algorithm and is no longer used, so do not use it]).</p><div id="diagram-2" class="diagram"><div id="create-passwd-box-hash"><p class="diagram-text">Create Password<br>E.g. Password123</p></div><div id="arrow-2"><div id="arrowbody-1"></div><div class="arrowhead"><div></div></div><div id="hash-passwd-box-hash"><p class="diagram-text">Hashing Algorithm</p></div><div id="arrow-3"><div id="arrowbody-3"></div><div class="arrowhead"></div></div><div id="db-passwd-box-hash"><p class="diagram-text">Database</p></div></div>
+                </td>
+            </tr>
+            
+        </table>
+        <table class="right-content-container content-container">
+            <tr class="right-content-1 right-tile content-tile">
+                <td>
+                    <h2 class="content-title">Why do we have passwords?</h2>
+                    <p class="content-para">There are 3 main methods of authenticating a user:</p>
+                    <ul>
+                        <li class="content-para">Something you know: Passwords, Passphrases, Security Questions</li>
+                        <li class="content-para">Something you have: Physical Keys, USB Security Keys</li>
+                        <li class="content-para">Something you are: Facial Recognition, Voice Authentication, Fingerprint ID.</li>
+                    </ul>
+                    <br>
+                    <br>
+                    <p class="content-para"> Each of these methods have their own benefits and drawbacks. Passwords can be guessed, voices can be recorded, and security keys can be stolen.<br><br>However, in this page we will only discuss passwords, which are something you know. The main advantage of passwords is that they have to be exact, a single change in character will not be accepted, whereas in biometrics, small changes over time are accepted.</p>
+                </td>
+            </tr>
+            <tr class="right-content-2 right-tile content-tile">
+                <td>
+                    <h2 class="content-title">What is password hashing?</h2>
+                    <p class="content-para">Password hashing is the process of using an incredibly complex algorithm to encrypt passwords into an incomprehensible format for hackers. The input that goes into these algorithms is called the cleartext password, and the output that comes out is called the hash.<br><br>Hashing algorithms have a few very specific properties:</p>
+                    <ul>
+                        <li class="content-para">They are irreversible
+                            <ul>
+                                <li class="content-para">This means that by knowing the hash and the hashing algorithm used, some cannot reverse it to figure out what the input password was.</li>
+                            </ul>
+                        </li>
+                        <li class="content-para">They are deterministic
+                            <ul>
+                                <li class="content-para">This means that for the same input, the algorithm will always return the same output.</li>
+                            </ul>
+                        </li>
+                        <li class="content-para">A small change in the input will result in a large change in the output
+                            <ul>
+                                <li class="content-para">This means that even single change such as capitalizing a letter will result in a drastic change in the output.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr class="right-content-3 right-tile content-tile">
+                <td>
+                    <h2 class="content-title">Example of a hash</h2>
+                    <p class="content-para">There are many different hashing algorithms, some of the most popular being SHA-256, MD5, AES, etc.<br><br> E.g. Password123<br></p><span class="hash">008c70392e3abfbd0fa47bbc2ed96aa99bd49e159727fcba0f2e6abeb3a9d601</span><p class="content-para"><br>E.g. password123<br></p><span class="hash">ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f</span><p class="content-para"><br><br>As can be seen above, a single small modification of the password changed the entire output hash. And the same password will always result in the same hash. You can try it out in the "Try it out!" section to the left.</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script type="text/babel">
+        ReactDOM.render(<NavBar />, document.getElementById("navbar-div"));
+    </script>
+    
+    <script>
+        $(function () {
+            let titleHeight = ($("#title-img").innerHeight() / 2)-($(".title-text").innerHeight() / 2);
+            $(".title-text").css("top", (titleHeight + "px"));
+
+            let contentHeight = ($("#title-img").outerHeight() + "px");
+            $(".content").css("top", contentHeight);
+
+            let contentTileMargin = ($("html").innerWidth() - ($(".content-tile").outerWidth() * 2))/ 3;
+            $(".content-tile").css("margin-top", (contentTileMargin + "px"));
+            $(".left-content-container").css("padding-left", (contentTileMargin + "px"));
+            $(".right-content-container").css("padding-right", (contentTileMargin + "px"));
+            $(".content-container").css("padding-bottom", (contentTileMargin + "px"));
+
+            // Hash Demo
+            $("#text-input").keyup(function () { // Run function when a key is released
+                input = $("#text-input").val();
+                if (input != "") {
+                    cryptoAlg = $("#crypto-alg").val();
+                    hashedOutput = ""
+                    if (cryptoAlg == "SHA-256") {
+                        hashedOutput = CryptoJS.SHA256(input);
+                    } else if (cryptoAlg == "SHA-512") {
+                        hashedOutput = CryptoJS.SHA512(input);
+                    } else if (cryptoAlg == "MD5") {
+                        hashedOutput = CryptoJS.MD5(input);
+                    } else if (cryptoAlg == "PBKDF2") {
+                        hashedOutput = CryptoJS.PBKDF2(input);
+                    }
+                    $("#text-output").val(hashedOutput);
+                } else {
+                    $("#text-output").val("");
+                }
+            });
+
+            $("#crypto-alg").change(function () { // Run function when value is changed
+                input = $("#text-input").val();
+                if (input != "") {
+                    cryptoAlg = $("#crypto-alg").val();
+                    hashedOutput = ""
+                    if (cryptoAlg == "SHA-256") {
+                        hashedOutput = CryptoJS.SHA256(input);
+                    } else if (cryptoAlg == "SHA-512") {
+                        hashedOutput = CryptoJS.SHA512(input);
+                    } else if (cryptoAlg == "MD5") {
+                        hashedOutput = CryptoJS.MD5(input);
+                    }
+                    $("#text-output").val(hashedOutput);
+                } else {
+                    $("#text-output").val("");
+                }
+            });
+
+            $(window).resize(function() { // Ensure elements are repositioned correctly based on resize.
+                let titleHeight = ($("#title-img").innerHeight() / 2)-($(".title-text").innerHeight() / 2);
+                $(".title-text").css("top", (titleHeight + "px"));
+
+                let contentHeight = ($("#title-img").outerHeight() + "px");
+                $(".content").css("top", contentHeight);
+
+                let contentTileMargin = ($("html").innerWidth() - ($(".content-tile").outerWidth() * 2))/ 3;
+                $(".content-tile").css("margin-top", (contentTileMargin + "px"));
+                $(".left-content-container").css("padding-left", (contentTileMargin + "px"));
+                $(".right-content-container").css("padding-right", (contentTileMargin + "px"));
+                $(".content-container").css("padding-bottom", (contentTileMargin + "px"));
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>CyberSpace</title>
+    <script src="NavBar.js" type="text/jsx"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="navbar-div"></div>
+
+    <div class="title">
+      <img id="title-img" src="PasswordsTitleBackground.png" alt="Passwords">
+      <span class="title-text"><h1 id="title">How are Passwords Cracked?</h1></span>
+    </div>
+
+    <div class="content">
+        <table class="left-content-container content-container">
+            <tr class="left-content-1 left-tile content-tile">
+                <td>
+                    <h2 class="content-title">Guess the password</h2>
+                    <p class="content-para">Oliver’s birthday is July 13th of 2002. His dog’s name is Barbie, whose birthday is October 24th of 2013<br><br>One of these pieces of information is related to his 6 digit numerical password. Guess his password in 5 tries.<br><br>What is the password?</p>
+                    <input id="passwd-guess" type="text"><p class="content-para" id="tries"></p>
+                </td>
+            </tr>
+            <tr class="left-content-2 left-tile content-tile">
+                <td>
+                    <h2 class="content-title">How do Hackers get your passwords?</h2>
+                    <p class="content-para">There are multiple ways in which a hacker can get someone’s password:</p>
+                    <ul>
+                        <li>Brute Forcing</li>
+                        <li>Social Engineering</li>
+                        <li>Malware</li>
+                        <li>Breaking into a website’s or application’s database (although the user can’t really do much about his.)</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr class="left-content-3 left-tile content-tile">
+                <td>
+                    <h2 class="content-title">Social Engineering</h2>
+                    <p class="content-para">Social engineering is all about tricking people and manipulating them. There are many ways to do this, but one of the most common methods is phishing. Phishing attacks are tricking a person that some sort of message is coming from a trusted source, such as amazon or google, and tricks the person into logging into a fake website or downloading some malicious file.<br><br>Example of phishing email (this example is completely made up):<br><br>Dear ShopHere customer,<br>We noticed that your credit card is near its expiry date, please update it within 14 days.<br><br>If you think there is a mistake, please sign into your account at www.shophere.com and call the number in the help section of your account.<br><br>Thanks & Regards<br>ShopHere Support<br><br>And the hacker can hide a malicious url in the "www.shophere.com" link leading to a website designed to look just like ShopHere.</p>
+                </td>
+            </tr>
+        </table>
+        <table class="right-content-container content-container">
+            <tr class="right-content-1 right-tile content-tile">
+                <td>
+                    <h2 class="content-title">Malware</h2>
+                    <p class="content-para">There are many types of malware - adware, viruses, worms, trojans, bots, ransomware, spyware, etc. - and they can be used to obtain a person’s password.<br><br>A hacker can use social engineering or directly attack a person’s device to install malware, and then run a malicious file or script to capture a person’s password among other things.<br><br>One example of how a hacker can do this is using a keylogger. Keyloggers are a type of spyware which ‘log’ or record a person’s interactions with their device. Whether they are typing something, clicking something, or taking a screenshot, a hacker will be able to access all of it if a keylogger is installed.<br><br>Keyloggers come in two forms, physical and digital keyloggers.<br><br>Physical keyloggers, often called rubber duckies, have to be manually plugged in into a port of a device, so if you ever recognize an unknown device plugged in, it is recommended to immediately remove it.<br><br>Digital keyloggers are software based, and they have to be downloaded. They then log the same information as physical keyloggers and then transmit the information to the hacker. Digital keyloggers can be identified by antivirus applications or can be noticed in task manager or activity monitor and then uninstalled.</p>
+                </td>
+            </tr>
+            <tr class="right-content-2 right-tile content-tile">
+                <td>
+                    <h2 class="content-title">Brute Forcing</h2>
+                    <p class="content-para">Brute forcing is when a hacker tries to guess a person’s password by trying out many, many combinations of characters. There are two types of brute force attacks, common passwords that are compiled together in enormous publicly available lists called password dictionaries.<br><br>A popular resource containing password dictionaries:</p><a href="https://github.com/danielmiessler/SecLists/tree/master/Passwords"><p class="content-para">Github page to password dictionaries</p></a><p class="content-para"><br>One major issue with dictionary tables, is that they are massive in terms of file size, sometimes even up to terabytes. To solve this, hackers have created rainbow tables. To learn more about how rainbow tables work, watch the following video.<br><iframe src="https://www.youtube-nocookie.com/embed/tlr8VRIhBJA" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen id="rainbow-tables-vid"></iframe></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script type="text/babel">
+        ReactDOM.render(<NavBar />, document.getElementById("navbar-div"));
+    </script>
+
+    <script>
+        $(function () {
+            let titleHeight = ($("#title-img").innerHeight() / 2)-($(".title-text").innerHeight() / 2);
+            $(".title-text").css("top", (titleHeight + "px"));
+
+            let contentHeight = ($("#title-img").outerHeight() + "px");
+            $(".content").css("top", contentHeight);
+
+            let contentTileMargin = ($("html").innerWidth() - ($(".content-tile").outerWidth() * 2))/ 3;
+            $(".content-tile").css("margin-top", (contentTileMargin + "px"));
+            $(".left-content-container").css("padding-left", (contentTileMargin + "px"));
+            $(".right-content-container").css("padding-right", (contentTileMargin + "px"));
+            $(".content-container").css("padding-bottom", (contentTileMargin + "px"));
+            
+            // Answer options
+            answerOptions = [061302, 227243, 654837, 102413];
+
+            // Function to pick a new answer
+            pickNewAns = () => {
+                answerOptions.sort(function(a, b){return 0.5 - Math.random()});
+                oldAns = localStorage.answer;
+                newAns = answerOptions[0];
+                if (oldAns == newAns) {
+                    pickNewAns();
+                }
+                localStorage.answer = newAns + "";
+            }
+
+            // To ensure that the answer and tries remaining are not undefined or 0, and to get the tries remaining and answer from local storage
+            if (localStorage.tryCount == undefined || localStorage.answer == undefined || localStorage.tryCount == 0) {
+                tryCount = 5;
+                localStorage.tryCount = tryCount;
+                pickNewAns();
+            } else {
+                tryCount = localStorage.tryCount;
+                newAns = localStorage.answer;
+            }
+            $("#tries").text("Tries left: " + tryCount);
+
+            // Event handler for when user inputs an answer
+            $("#passwd-guess").keypress(function (event) {
+                if (event.which == 13) {
+                    userAnswer = $("#passwd-guess").val();
+                    while (newAns == 25282) {
+                        pickNewAns();
+                    }
+                    if (userAnswer == localStorage.answer) { // Answer is correct
+                        tryCount = 5;
+                        localStorage.tryCount = tryCount;
+                        $("#tries").css("color", "green");
+                        $("#tries").text("Correct!");
+                        setTimeout(function () {
+                            $("#tries").css("color", "#FFFFFF");
+                            $("#tries").text("Tries left: " + tryCount);
+                        }, 2000);
+                        
+                        $("#passwd-guess").val("");
+                    } else if (tryCount == 1) { // Out of tries
+                        tryCount = 5;
+                        localStorage.tryCount = tryCount;
+                        $("#tries").text("You've run out of tries");
+                        setTimeout(function () {
+                            $("#tries").css("color", "#FFFFFF");
+                            $("#tries").text("Tries left: " + tryCount);
+                        }, 2000);
+                        pickNewAns();
+                    } else { // Answer is incorrect
+                        tryCount--;
+                        localStorage.tryCount = tryCount;
+                        $("#tries").css("color", "red");
+                        $("#tries").text("Incorrect");
+                        setTimeout(function () {
+                            $("#tries").css("color", "#FFFFFF");
+                            $("#tries").text("Tries left: " + tryCount);
+                        }, 2000);
+                    }
+                }
+            });
+
+            $(window).resize(function() { // Ensure elements are repositioned correctly based on resize.
+                let titleHeight = ($("#title-img").innerHeight() / 2)-($(".title-text").innerHeight() / 2);
+                $(".title-text").css("top", (titleHeight + "px"));
+
+                let contentHeight = ($("#title-img").outerHeight() + "px");
+                $(".content").css("top", contentHeight);
+
+                let contentTileMargin = ($("html").innerWidth() - ($(".content-tile").outerWidth() * 2))/ 3;
+                $(".content-tile").css("margin-top", (contentTileMargin + "px"));
+                $(".left-content-container").css("padding-left", (contentTileMargin + "px"));
+                $(".right-content-container").css("padding-right", (contentTileMargin + "px"));
+                $(".content-container").css("padding-bottom", (contentTileMargin + "px"));
+            });
+        });
+    </script>
+</body>
+</html>
